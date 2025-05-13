@@ -14,7 +14,7 @@ import { debounce, ListItem } from '@mui/material';
 
 function App() {
   const [places, setPlaces] = useState<any>([]);
-  const [weatherData, setWeatherData] = useState<any>([]);
+  const [weatherData] = useState<any>([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState<{ lat: number; lng: number }>({ lat: 0, lng: 0 });
   const [bounds, setBounds] = useState<{ ne: { lat: number; lng: number }; sw: { lat: number; lng: number } } | null>(null);

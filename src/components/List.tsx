@@ -1,6 +1,6 @@
 import { Grid } from "@mui/joy";
 import { CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material"
-import { createRef, useEffect, useMemo, useState } from "react"
+import { createRef, useEffect, useState } from "react"
 import PlaceDetails from "./PlaceDetails";
 
 type ListProps = {

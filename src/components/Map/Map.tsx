@@ -1,7 +1,7 @@
 import { Paper, Rating, Typography, useMediaQuery } from "@mui/material";
 import { GoogleMap, Marker, OverlayView } from "@react-google-maps/api";
 import { useRef } from "react";
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+// import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import mapStlyes from "./mapStyle";
 
 interface MapProps {
@@ -14,7 +14,8 @@ interface MapProps {
     weatherData: any,
 }
 
-const Map: React.FC<MapProps> = ({ setCoordinates, setBounds, coordinates, bounds, places, setChildClicked, weatherData }) => {
+const Map: React.FC<MapProps> = ({ setCoordinates, setBounds, coordinates, bounds, places, setChildClicked }) => {
+    
     const isDesktop = useMediaQuery("(min-width: 600px)");
     const containerStyle = {
         width: "100%",

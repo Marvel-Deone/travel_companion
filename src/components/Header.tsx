@@ -1,15 +1,11 @@
 // import { AutocompleteOption, ListItemContent, ListItemDecorator } from '@mui/joy';
-import { Box, InputBase, TextField, Toolbar, Typography } from '@mui/material';
+import { Box, InputBase, Toolbar, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
 import { useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 
 const Header = ({ setCoordinates }: { setCoordinates: (coords: { lat: number; lng: number }) => void }) => {
-    const options = [
-        { label: 'The Godfather', id: 1 },
-        { label: 'Pulp Fiction', id: 2 },
-    ];
     const [autoComplete, setAutocomplete] = useState<any>(null);
 
     const onLoad = (autoC: any) => setAutocomplete(autoC);

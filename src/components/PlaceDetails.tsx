@@ -2,16 +2,6 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Rating, T
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import type React from "react";
-import { useEffect } from "react";
-
-interface Place {
-    name: string;
-    photo: any;
-    price_level?: string;
-    ranking?: string;
-    awards?: Array<{ images: { small: string }; display_name: string }>;
-    cuisine?: Array<{ name: string }>; // Explicitly typed
-}
 
 interface PlaceDetailsProps {
     place: any,
