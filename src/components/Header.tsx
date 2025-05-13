@@ -1,13 +1,26 @@
 // import { AutocompleteOption, ListItemContent, ListItemDecorator } from '@mui/joy';
-import { Autocomplete, Box, TextField, Toolbar, Typography } from '@mui/material';
+import { Box, InputBase, TextField, Toolbar, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
+import { useState } from 'react';
+import { Autocomplete } from '@react-google-maps/api';
 
-const Header = () => {
+const Header = ({ setCoordinates }: { setCoordinates: (coords: { lat: number; lng: number }) => void }) => {
     const options = [
         { label: 'The Godfather', id: 1 },
         { label: 'Pulp Fiction', id: 2 },
     ];
+    const [autoComplete, setAutocomplete] = useState<any>(null);
+
+    const onLoad = (autoC: any) => setAutocomplete(autoC);
+
+    const onPlaceChanged = () => {
+        if (autoComplete) {
+            const lat = autoComplete.getPlace().geometry.location.lat();
+            const lng = autoComplete.getPlace().geometry.location.lng();
+            setCoordinates({ lat, lng });
+        }
+    }
 
     return (
         <AppBar>
@@ -19,35 +32,14 @@ const Header = () => {
                     <Typography variant='h6' fontSize='17px' className='hidden md:flex'>
                         Explore new places
                     </Typography>
-                    <Autocomplete className='hidden md:flex' style={{ cursor: 'pointer' }}
-                        options={options}
-                        renderInput={(params) => (
-                            <>
-                                <TextField {...params}
-                                    size='small'
-                                    placeholder='Search...'
-                                    InputProps={{
-                                        ...params.InputProps,
-                                        startAdornment: (
-                                            <SearchIcon sx={{ color: 'white', marginLeft: 1 }} />
-                                        ),
-                                        sx: {
-                                            color: 'white',
-                                            '& input': { color: 'white' },
-                                        },
-                                    }}
-                                />
-                            </>
-                        )
-                        }
-                        sx={{
-                            width: 250, backgroundColor: '#ffffff40', border: 0, '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                    border: 'none'
-                                },
-                            },
-                        }}
-                    />
+                    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} className='border-0'>
+                        <div className='flex gap-1 px-2 py-1.5 relative rounded-lg bg-[#ffffff40] text-white hover:bg-[#ffffff64] mr-2 ml-0 w-full z-0'>
+                            <div className='mt-0.5'>
+                                <SearchIcon />
+                            </div>
+                            <InputBase placeholder="Search..." sx={{ color: 'white' }} />
+                        </div>
+                    </Autocomplete>
                     <div className="flex md:hidden">
                         <SearchIcon />
                     </div>
